@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <!-- link to all stylesheet -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/html2canvas.min.js"></script>
+    <script type="text/javascript" src="js/sweetalert.min.js"></script>
+
+
+
+
+    
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.min.css">
+    <!-- link -->
+    <!-- script-->
+
+    <title>helo</title>
+</head>
+<body>
+<header>
+    <div class="container ">
+        <h1 class="center-align">Table</h1>
+    </div>
+</header>
+
+<section id="background">
+    <div class="container">
+        <a id="test"></a>
+        <div id="text">
+            <table style="width:100%">
+                <tr>
+                    <th>first name</th>
+                    <th>Lastname</th>
+                    <th>Age</th>
+                </tr>
+                <tr>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                </tr>
+                <tr>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                </tr>
+                <tr>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+    </div>
+</section>
+
+
+<section>        <!-- buttons -->
+    <div class="container">
+        <div class="buttonsss">
+            <div class="row">
+                <div class="col s6">
+                    <div class="left-align btn-body">
+                        <button class="waves-effect waves-light btn " onclick="genScreenshot()">Download</button>
+                    </div>
+                </div>
+                <div class="col s6 btn-body">
+                    <div class="right-align">
+
+                        <button class="waves-effect waves-light btn" onclick="color()">color</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="box1" style="display: none;"></div>
+
+
+<!--script part-->
+
+<script>
+    function color() {
+        var x = document.getElementById('background');
+
+        if (x.style.backgroundColor === 'white') {
+            x.style.backgroundColor = 'blue';
+        }
+        else {
+            x.style.backgroundColor = 'white';
+        }
+
+    }
+
+
+</script>
+
+<script>
+    function genScreenshot() {
+        html2canvas($("#background"), {
+            onrendered: function (canvas) {
+                $('#box1').html("");
+                $('#box1').append(canvas);
+
+               
+                    $('#test').attr('href', canvas.toDataURL("image/png"));
+                    $('#test').attr('download', 'Test file.png');
+                    $('#test')[0].click();
+                
+
+
+            }
+        });
+
+    }
+
+</script>
+<script>
+    var timer = 6, // timer in seconds
+        isTimerStarted = false;
+
+    (function customSwal() {
+        swal({
+            title: "To download image",
+            text: "please fill the entries then click on download to save an image of your tables... " + timer,
+            timer: !isTimerStarted ? timer * 1000 : undefined,
+            showConfirmButton: false
+        });
+        isTimerStarted = true;
+        if (timer) {
+            timer--;
+            setTimeout(customSwal, 1000);
+        }
+    })();
+</script>
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+
+
+
+
+</body>
+</html>
